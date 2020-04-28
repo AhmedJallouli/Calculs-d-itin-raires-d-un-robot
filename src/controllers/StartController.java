@@ -47,7 +47,7 @@ public class StartController {
             Parent root = FXMLLoader.load(getClass().getResource("../views/grid.fxml"));
 
             Stage stage = (Stage) closeButton.getScene().getWindow();
-            gridManager.makeGrid(100, 6, 9, 20);
+            gridManager.makeGrid(100, heightValue, widthValue, 20);
             new SetupGridNodes(gridManager);
 
 
