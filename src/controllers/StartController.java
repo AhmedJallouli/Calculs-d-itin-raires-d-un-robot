@@ -1,5 +1,7 @@
 package controllers;
 
+import Grid.GridManager;
+import Grid.SetupGridNodes;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,7 +10,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -17,6 +21,8 @@ public class StartController {
 
     private double xOffset = 0;
     private double yOffset = 0;
+    public static Scene scene;
+    public static final GridManager gridManager = new GridManager();
 
     @FXML
     private Button closeButton;
@@ -41,7 +47,17 @@ public class StartController {
             Parent root = FXMLLoader.load(getClass().getResource("../views/grid.fxml"));
 
             Stage stage = (Stage) closeButton.getScene().getWindow();
-            stage.setScene(new Scene(root, 600, 400));
+            gridManager.makeGrid(100, 6, 9, 20);
+            new SetupGridNodes(gridManager);
+
+
+            scene = new Scene(root, 1020, 700);
+            VBox vbox = (VBox) scene.lookup("#vbox");
+            vbox.getChildren().add(gridManager.getGrid());
+
+            new SetupGridNodes(gridManager);
+            stage.setScene(scene);
+            stage.show();
 
             //make the window movable
             root.setOnMousePressed(event -> {
