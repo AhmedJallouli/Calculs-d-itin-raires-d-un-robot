@@ -43,24 +43,6 @@ public class Main extends Application {
 
     }
 
-//    public static void startGrid(Stage primaryStage) throws IOException {
-//        Parent root = FXMLLoader.load(getClass().getResource("../views/grid.fxml"));
-//
-//        gridManager.makeGrid(100, 6, 9, 20);
-//
-//
-//        scene = new Scene(root, 1020, 700);
-//        VBox vbox = (VBox) scene.lookup("#vbox");
-//        vbox.getChildren().add(gridManager.getGrid());
-//
-//        new SetupGridNodes(gridManager);
-//
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
-//    }
-
-
-
     public static void main(String[] args) {
         launch(args);
     }
