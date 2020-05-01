@@ -10,11 +10,12 @@ public class GridNode {
 
     public static List<GridNode> nodesList = new ArrayList<>();
 
+    public static int nodeCount = 0;
 
     protected boolean isObstacle;
     protected boolean isStart;
     protected boolean isEnd;
-
+    protected String name;
     protected double x, y, shapeSize;
     protected Circle shape;
 
@@ -70,7 +71,7 @@ public class GridNode {
         this.isObstacle = isObstacle;
         this.isStart = isStart;
         this.isEnd = isEnd;
-
+        this.name = (nodeCount++).toString();
         constructShape(radius, color);
 
         nodesList.add(this);
