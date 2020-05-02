@@ -10,59 +10,25 @@ public class GridNode {
 
     public static List<GridNode> nodesList = new ArrayList<>();
 
-    public static int nodeCount = 0;
+    public static int nodeCount = 1;
 
     protected boolean isObstacle;
     protected boolean isStart;
     protected boolean isEnd;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     protected String name;
+
     protected double x, y, shapeSize;
     protected Circle shape;
 
-    public GridNode() {
-        shape = new Circle();
-        shape.setCenterX(x);   //réglage de la position, de la taille et de la couleur du cercle
-        shape.setCenterY(y);
-        shape.setRadius(shapeSize);
-        nodesList.add(this);
-
-    }
-
-    public GridNode(double x, double y, boolean isObstacle) {
-        shape = new Circle();
-        this.x = x;
-        this.y = y;
-        shape.setCenterX(x);
-        shape.setCenterY(y);
-        shape.setRadius(shapeSize);
-        nodesList.add(this);
-
-    }
-
-    public GridNode(double x, double y, boolean isObstacle, double radius) {
-        shape = new Circle();
-        this.x = x;
-        this.y = y;
-        shapeSize = radius;
-        shape.setCenterX(x);
-        shape.setCenterY(y);
-        shape.setRadius(shapeSize);
-        nodesList.add(this);
-        shape.setRadius(shapeSize);
-
-    }
-
-    public GridNode(int x, int y, boolean isObstacle, double radius, int red, int green, int blue) {
-        shape = new Circle();
-        this.x = x;
-        this.y = y;
-        shapeSize = radius;
-        shape.setRadius(shapeSize);
-        nodesList.add(this);
-        shape.setRadius(shapeSize);
-        shape.setFill(Color.rgb(red, green, blue));
-
-    }
 
     public GridNode(int x, int y, boolean isObstacle, boolean isEnd, boolean isStart,
                     double radius, Color color) { //used only this
@@ -71,10 +37,10 @@ public class GridNode {
         this.isObstacle = isObstacle;
         this.isStart = isStart;
         this.isEnd = isEnd;
-        this.name = (nodeCount++).toString();
+        this.name = String.valueOf(nodeCount++);
         constructShape(radius, color);
-
-        nodesList.add(this);
+        if (!isObstacle)
+            nodesList.add(this);
 
     }
 
@@ -143,9 +109,25 @@ public class GridNode {
         isObstacle = obstacle;
     }
 
+    public static GridNode getStartingNode() {
+        for (GridNode node : nodesList) {
+            if (node.isStart) {
+                return node;
+            }
+        }
+        return null;
+    }
+
+    public static GridNode getEndingNode() {
+        for (GridNode node : nodesList) {
+            if (node.isEnd) {
+                return node;
+            }
+        }
+        return null;
+    }
 
 }
-
 
 
 
