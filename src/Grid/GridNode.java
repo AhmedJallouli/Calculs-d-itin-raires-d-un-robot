@@ -61,6 +61,11 @@ public class GridNode {
         shape.setFill(Color.rgb(red, green, blue));
 
     }
+    
+    public void setColor(Color color) {
+        shape.setFill(color);
+
+    }
 
     public double getX() {
         return x;
